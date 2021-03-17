@@ -2,6 +2,6 @@ venv/
 *.pyc
 .venv
 *.log
-# *.m4s
+*.m4s
 __pycache__/
 .ipynb_checkpoints
