@@ -6,10 +6,13 @@ metadata:
   labels:
     app: explora-vr-server
 data:
-  FLASK_APP: run.py
-  APP_SETTINGS: production
-  QUERY_LOG: ./issued_queries.log
-  ENABLE_PREFETCHING: true
+  FLASK_APP: 'run.py'
+  APP_SETTINGS: 'production'
+  QUERY_LOG: './issued_queries.log'
+  ENABLE_TC: 'true'
+  BANDWIDTH: '1gbit'
+  LATENCY: '25'
+  JITTER: '0'
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -19,7 +22,7 @@ metadata:
     app: explora-vr-server
   name: explora-vr-server
 spec:
-  replicas: 3
+  replicas: 1
   strategy:
     type: Recreate
   template:
@@ -34,6 +37,12 @@ spec:
             name: explora-vr-server-config
         image: gitlab.ilabt.imec.be:4567/lordezan/explora-vr-server
         name: explora-vr-server
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+      nodeSelector:
+        explora-env: test
       restartPolicy: Always
       imagePullSecrets:
         - name: regcred    
