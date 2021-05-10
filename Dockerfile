@@ -3,10 +3,11 @@ FROM python:3.7-slim
 ENV FLASK_APP="run.py"
 ENV APP_SETTINGS="production"
 ENV QUERY_LOG="./issued_queries.log"
+ENV ENABLE_PREFETCHING="true"
 ENV ENABLE_TC="false"
-ENV BANDWIDTH="25Mbps"
-ENV LATENCY="15ms"
-ENV JITTER="1.5ms"
+ENV BANDWIDTH="25mbit"
+ENV LATENCY="15"
+ENV JITTER="0"
 
 ARG gid=www-data
 ARG uid=www-data
