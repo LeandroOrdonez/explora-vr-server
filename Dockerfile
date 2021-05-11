@@ -3,6 +3,7 @@ FROM python:3.7-slim
 ENV FLASK_APP="run.py"
 ENV APP_SETTINGS="production"
 ENV QUERY_LOG="./issued_queries.log"
+ENV N_CLIENTS=1
 ENV ENABLE_PREFETCHING="true"
 ENV ENABLE_TC="false"
 ENV BANDWIDTH="25mbit"
